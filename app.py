@@ -52,7 +52,7 @@ st.markdown("""
 @st.cache_resource
 def load_model_components():
     try:
-        model = load_model('models/model.h5')
+        model = load_model('models/airbnb_price_model.h5')
         preprocessor = joblib.load('models/preprocessor.pkl')
         return model, preprocessor
     except Exception as e:
