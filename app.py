@@ -52,15 +52,24 @@ st.markdown("""
 @st.cache_resource
 def load_model_components():
     try:
-        # For Streamlit Cloud compatibility
-        from tensorflow.keras.models import load_model
-        import tensorflow as tf
+        # Workaround for Streamlit Cloud
+        import os
+        os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suppress TensorFlow warnings
         
-        # Suppress TensorFlow warnings
-        tf.get_logger().setLevel('ERROR')
+        from tensorflow.keras.models import load_model
+        from tensorflow.keras.backend import clear_session
+        
+        # Clear any existing session
+        clear_session()
         
         # Load model with custom objects if needed
-        model = load_model('models/airbnb_price_model.h5', compile=False)
+        model = load_model(
+            'models/airbnb_price_model.h5',
+            compile=False,
+            options=tf.saved_model.LoadOptions(
+                experimental_io_device='/job:localhost'
+            )
+        )
         
         # Load preprocessing pipeline
         preprocessor = joblib.load('models/preprocessor.pkl')
@@ -71,7 +80,6 @@ def load_model_components():
         st.error(f"Model loading error: {str(e)}")
         st.info("Using demo mode - predictions will be simulated")
         return None, None
-
 # App Header
 col1, col2 = st.columns([3, 1])
 with col1:
