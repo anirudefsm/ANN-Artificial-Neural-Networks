@@ -2,6 +2,24 @@
 
 This Streamlit app provides AI-powered price recommendations for Airbnb listings with hyperparameter tuning capabilities.
 
+## Deployment Requirements
+
+1. **Python Version**: 3.10 (specified in runtime.txt)
+2. **Required Files**:
+   - `models/airbnb_price_model.h5` (your trained model)
+   - `models/preprocessor.pkl` (your preprocessing pipeline)
+
+## Streamlit Cloud Deployment
+
+1. **First-Time Setup**:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/yourusername/your-repo.git
+   git push -u origin main
+
 ## Deployment Notes
 
 1. **Python Version**: This app requires Python 3.10 (specified in runtime.txt)
