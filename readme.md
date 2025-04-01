@@ -2,6 +2,18 @@
 
 This Streamlit app provides AI-powered price recommendations for Airbnb listings with hyperparameter tuning capabilities.
 
+## Deployment Notes
+
+1. **Python Version**: This app requires Python 3.10 (specified in runtime.txt)
+2. **TensorFlow**: Using tensorflow-cpu 2.16.1 for compatibility
+3. **Model Files**: Ensure your model files are in the `models/` directory
+4. **Deployment Steps**:
+   - Push to GitHub
+   - On Streamlit Cloud:
+     - Select Python 3.10 as runtime
+     - Set main file to `app.py`
+     - Deploy!
+
 ## Features
 
 - Price prediction based on property features
